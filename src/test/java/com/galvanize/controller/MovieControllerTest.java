@@ -71,7 +71,7 @@ public class MovieControllerTest {
 
 
     @Test
-    void getlAllMoviesTest() throws Exception {
+    void getAllMoviesTest() throws Exception {
 
         //Set Up
         List<Movie> movies = new ArrayList<>();
