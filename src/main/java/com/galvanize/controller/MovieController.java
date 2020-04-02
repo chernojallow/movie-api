@@ -1,7 +1,7 @@
 package com.galvanize.controller;
 
-import com.galvanize.Movie;
-import com.galvanize.MovieService.MovieService;
+import com.galvanize.entity.Movie;
+import com.galvanize.services.MovieService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -17,7 +17,6 @@ public class MovieController {
     public MovieController( MovieService movieService){
         this.movieService = movieService;
     }
-
 
 
     @PostMapping

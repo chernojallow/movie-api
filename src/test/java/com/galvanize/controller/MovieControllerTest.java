@@ -2,8 +2,8 @@ package com.galvanize.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.galvanize.Movie;
-import com.galvanize.MovieService.MovieService;
+import com.galvanize.entity.Movie;
+import com.galvanize.services.MovieService;
 import org.junit.jupiter.api.Test;
 import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,8 +13,6 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -53,7 +51,7 @@ public class MovieControllerTest {
 
 
         //setup
-        Movie movie = new Movie(1L, "imdbid", actors, "sam", "lets make a movie", "2020","2020-10-10" );
+        Movie movie = new Movie(1L, "imdbid",  "sam", "lets make a movie", "2020","2020-10-10" );
 
         ObjectMapper mapper = new ObjectMapper();
 
@@ -64,8 +62,8 @@ public class MovieControllerTest {
                 .andDo(print())
                 .andExpect(status().isOk())
                         .andExpect(jsonPath("$.movieId").value(movie.getMovieId()))
-                .andExpect(jsonPath("$.imdbId").value(movie.getImdbId()))
-                .andExpect(jsonPath("$.actors").value(movie.getActors()));
+                .andExpect(jsonPath("$.imdbId").value(movie.getImdbId()));
+
 
 
 

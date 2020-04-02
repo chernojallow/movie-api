@@ -1,28 +1,46 @@
-package com.galvanize;
+package com.galvanize.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.time.LocalDate;
 import java.util.List;
 
+@Entity
+@Table(name ="movies")
 public class Movie {
-
-
+@Id
+@GeneratedValue(strategy = GenerationType.IDENTITY)
 
 private Long movieId;
+@Column
 private String  imdbId;
-private List<String> actors;
+
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "actors", nullable = false)
+//    @JsonIgnore
+//private List<String> actors;
+
+//    private String actors;
+
+@Column
 private String directors;
+@Column
 private String title;
+@Column
 private String year;
+@Column
 private String released;
+
 
 
       public Movie(){};
 
 
-    public Movie(Long movieId, String imdbId, List<String> actors, String directors, String title, String year, String released) {
+    public Movie(Long movieId, String imdbId, String directors, String title, String year, String released) {
         this.movieId = movieId;
         this.imdbId = imdbId;
-        this.actors = actors;
         this.directors = directors;
         this.title = title;
         this.year = year;
@@ -45,13 +63,13 @@ private String released;
         this.imdbId = imdbId;
     }
 
-    public List<String> getActors() {
-        return actors;
-    }
+//    public List<String> getActors() {
+//        return actors;
+//    }
 
-    public void setActors(List<String> actors) {
-        this.actors = actors;
-    }
+//    public void setActors(List<String> actors) {
+//        this.actors = actors;
+//    }
 
     public String getDirectors() {
         return directors;
@@ -91,7 +109,7 @@ private String released;
         return "Movie{" +
                 "movieId=" + movieId +
                 ", imdbId='" + imdbId + '\'' +
-                ", actors=" + actors +
+//                ", actors=" + actors +
                 ", directors='" + directors + '\'' +
                 ", title='" + title + '\'' +
                 ", year='" + year + '\'' +
