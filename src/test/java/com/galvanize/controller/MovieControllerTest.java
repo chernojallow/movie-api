@@ -16,8 +16,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.ArrayList;
 import java.util.List;
 
+import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
 import static org.mockito.Mockito.when;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
@@ -31,10 +33,11 @@ public class MovieControllerTest {
     MockMvc mockMvc;
 
 
-
   @MockBean
   MovieService movieService;
 
+
+    final String baseUrl = "/api/movies";
 
     @Test
     void createMovieTest() throws Exception {
@@ -58,15 +61,29 @@ public class MovieControllerTest {
         String newMapper = mapper.writeValueAsString(movie);
 
         when(movieService.createMovie(ArgumentMatchers.any(Movie.class))).thenReturn(movie);
-        mockMvc.perform(post("/api/movies").content(newMapper).contentType(MediaType.APPLICATION_JSON))
+        mockMvc.perform(post(baseUrl).content(newMapper).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
                         .andExpect(jsonPath("$.movieId").value(movie.getMovieId()))
                 .andExpect(jsonPath("$.imdbId").value(movie.getImdbId()));
 
+    }
 
 
+    @Test
+    void getlAllMoviesTest() throws Exception {
 
+        //Set Up
+        List<Movie> movies = new ArrayList<>();
+        Movie movie = new Movie();
+           movies.add(movie);
+
+           //Exercise
+           when(movieService.getAllMovies()).thenReturn(movies);
+        mockMvc.perform(get(baseUrl).accept(MediaType.APPLICATION_JSON))
+                   .andExpect(status().isOk())
+                   .andExpect(jsonPath("$", hasSize(movies.size())));
 
     }
+
 }
