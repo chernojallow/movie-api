@@ -14,7 +14,7 @@ public class Movie {
 @GeneratedValue(strategy = GenerationType.IDENTITY)
 
 private Long movieId;
-@Column
+@Column(unique=true)
 private String  imdbId;
 
 //    @OneToOne(fetch = FetchType.LAZY)

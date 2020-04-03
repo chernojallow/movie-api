@@ -25,4 +25,11 @@ public class MovieService {
     public List<Movie> getAllMovies() {
         return this.movieRepository.findAll();
     }
+
+//    public Movie getOneMovieByIMDBID( String imdbid) {
+//        Optional<Movie> movie = movieRepository.getOneMovieByIMDBID(imdbid);
+//        return movie.orElse(null);
+//    }
+
+
 }

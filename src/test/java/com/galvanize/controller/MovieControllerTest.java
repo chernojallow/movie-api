@@ -37,6 +37,8 @@ public class MovieControllerTest {
   MovieService movieService;
 
 
+
+
     final String baseUrl = "/api/movies";
 
     @Test
@@ -85,5 +87,57 @@ public class MovieControllerTest {
                    .andExpect(jsonPath("$", hasSize(movies.size())));
 
     }
+
+
+//
+//    @Test
+//    void getOneMovieByIMDBID_test() throws Exception {
+//
+//
+//        Movie movie = new Movie();
+//         movie.getImdbId();
+//
+////        List<Movie> movies = new ArrayList<>();
+////        Movie movie = new Movie();
+////        movie.getImdbId();
+////        movies.add(movie);
+//
+//
+//        when(movieService.getOneMovieByIMDBID(movie.getImdbId())).thenReturn(movie);
+//
+//        mockMvc.perform(get(baseUrl).accept(MediaType.APPLICATION_JSON))
+//                .andExpect(status().isOk())
+//                .andExpect(jsonPath("$.imdbId").value(movie.getImdbId()));
+//
+//
+//
+//
+//
+//    }
+
+
+ @Test
+    void getAllMoviesByTitle() throws Exception {
+
+        //Set up
+    List<Movie> movies = new ArrayList<>();
+      Movie movie = new Movie();
+         movie.getTitle();
+         movies.add(movie);
+
+
+         //Exercise
+     when(movieService.getAllMoviesByTitle()).thenReturn(movies);
+     mockMvc.perform(get(baseUrl).accept(MediaType.APPLICATION_JSON))
+             .andExpect(status().isOk())
+             .andExpect(jsonPath("$", hasSize(movies.size())));
+
+
+
+
+ }
+
+
+
 
 }
