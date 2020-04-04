@@ -15,15 +15,16 @@ import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -88,9 +89,46 @@ public class MovieControllerTest {
 
     }
 
+ @Test
+    void getAllMoviesByTitle_Test() throws Exception {
 
-//
-//    @Test
+        //Set up
+    List<Movie> movies = new ArrayList<>();
+      Movie movie = new Movie();
+         movie.getTitle();
+         movies.add(movie);
+
+
+         //Exercise
+     when(movieService.getAllMoviesByTitle(movie.getTitle())).thenReturn(movies);
+     mockMvc.perform(get(baseUrl).accept(MediaType.APPLICATION_JSON))
+             .andExpect(status().isOk());
+//             .andExpect(jsonPath("$", hasSize(movies.size())));
+
+
+ }
+
+
+
+ ////    DELETE: delete a movie by id
+
+    @Test
+    void deleteMovieById_whenExist() throws Exception {
+        // Setup
+        when(movieService.deleteMovieById(ArgumentMatchers.any(Long.class))).thenReturn(true);
+
+        // Exercise
+        mockMvc.perform(delete(baseUrl+ "/1").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$").doesNotExist());
+    }
+
+
+
+
+
+
+    //    @Test
 //    void getOneMovieByIMDBID_test() throws Exception {
 //
 //
@@ -116,27 +154,27 @@ public class MovieControllerTest {
 //    }
 
 
- @Test
-    void getAllMoviesByTitle_Test() throws Exception {
-
-        //Set up
-    List<Movie> movies = new ArrayList<>();
-      Movie movie = new Movie();
-         movie.getTitle();
-         movies.add(movie);
 
 
-         //Exercise
-     when(movieService.getAllMoviesByTitle(movie.getTitle())).thenReturn(movies);
-     mockMvc.perform(get(baseUrl).accept(MediaType.APPLICATION_JSON))
-             .andExpect(status().isOk());
-//             .andExpect(jsonPath("$", hasSize(movies.size())));
-
-
-
-
- }
-
+//   @Test
+//    void  searchMovie_ByActor_ByDirector_ByGenre_Test() throws Exception {
+//
+//        Movie movie = new Movie();
+//        List<Movie> movies = new ArrayList<>();
+//        movie.setDirectors("Roy");
+//        movies.add(movie);
+//
+//        String searchActor = "Anold";
+//        String searchDirector = "Roy";
+//        String searchGenre = "comic";
+//
+//       when(movieService.searchMovieByActor_ByDirector_ByGenre(movie.getDirectors()))
+//               .thenReturn(new ArrayList<>()).equals(searchActor);
+//
+//       mockMvc.perform(get(baseUrl).param("searchActor", searchActor))
+//               .andExpect(status().isOk());
+//
+//   }
 
 
 

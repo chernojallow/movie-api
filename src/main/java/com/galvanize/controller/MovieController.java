@@ -29,22 +29,44 @@ public class MovieController {
     public List<Movie> getAllMovies(){
         return this.movieService.getAllMovies();
 
+    }
 
+    @GetMapping("/{title}")
+                public List<Movie> getAllMoviesByTitle(@PathVariable String title){
+                  return this.movieService.getAllMoviesByTitle(title);
+
+        }
+
+
+    @DeleteMapping("/{id}")
+    ResponseEntity<Object> deleteMovieById(@PathVariable Long id) {
+
+        boolean success = movieService.deleteMovieById(id);
+        if(success) {
+            return ResponseEntity.ok(null);
+        } else {
+            return ResponseEntity.badRequest().body("Movie with id" + id + " was not found.");
+        }
     }
 
 
-
-//    @GetMapping("/{id}")
+    //    @GetMapping("/{id}")
 //    public ResponseEntity<ServiceTicket> getTicketById(@PathVariable Long id){
 //        Optional<ServiceTicket> ticket = service.getTicket(id);
 //        return ticket.isPresent() ? ResponseEntity.ok(ticket.get()) : ResponseEntity.notFound().build();
 
 
-        @GetMapping("/{title}")
-                public List<Movie> getAllMoviesByTitle(@PathVariable String title){
-                  return this.movieService.getAllMoviesByTitle(title);
 
-        }
+
+//    @GetMapping("/search")
+//    public List<Movie> searchMovie_ByActor_ByDirector_ByGenre_Test(@RequestParam String searchActor){
+//        return movieService.searchMovieByActor_ByDirector_ByGenre(searchActor);
+//    }
+
+
+
+
+
     }
 
 

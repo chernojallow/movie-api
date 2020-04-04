@@ -36,6 +36,26 @@ public class MovieService {
         }
 
     }
+
+
+    public boolean deleteMovieById(Long id) {
+        try {
+             movieRepository.deleteById(id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+
+    }
+
+
+//    public List<Movie> searchMovieByActor_ByDirector_ByGenre(String searchActor) {
+//        return this.movieRepository.searchMovieByActor_ByDirector_ByGenre(searchActor);
+//    }
+
+
+
+
 //    public Movie getOneMovieByIMDBID( String imdbid) {
 //        Optional<Movie> movie = movieRepository.getOneMovieByIMDBID(imdbid);
 //        return movie.orElse(null);
