@@ -48,6 +48,16 @@ public class MovieService {
 
     }
 
+//    public Movie addRatingStarForMovie(Movie movie) {
+//        return movieRepository.save(movie);
+//    }
+
+
+
+     List <Movie> addRatingStarForMovie(List<Object> movie) {
+        return movieRepository.findAll();
+     }
+
 
 //    public List<Movie> searchMovieByActor_ByDirector_ByGenre(String searchActor) {
 //        return this.movieRepository.searchMovieByActor_ByDirector_ByGenre(searchActor);

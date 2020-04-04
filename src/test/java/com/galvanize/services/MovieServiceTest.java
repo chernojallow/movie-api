@@ -5,6 +5,7 @@ import com.galvanize.entity.Movie;
 import com.galvanize.repository.MovieRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.ArgumentMatchers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -15,6 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @SpringBootTest
 @AutoConfigureMockMvc
@@ -59,6 +62,9 @@ class MovieServiceTest {
         List<Movie> movie = new ArrayList<>();
         List<Movie> movies = movieService.getAllMovies();
 
+
+        System.out.println(movie);
+
         //Execise
         assertEquals(movie.size(), movies.size());
         assertTrue(movie.containsAll(movies));
@@ -81,6 +87,28 @@ class MovieServiceTest {
         assertFalse(movie.contains(title));
         assertEquals(movie.size(), movies.size());
         assertTrue(movie.containsAll(movies));
+    }
+
+
+
+    @Test
+    void addStarRating_For_Movie_Test(){
+
+        //Set up
+        Movie movie = new Movie();
+        String starRating = "*";
+
+        List<Object> movies = new ArrayList<>();
+        movies.add(movie);
+        movies.add("rating" + starRating);
+
+        //Exercise
+        List<Movie> addRatingStar = movieService.addRatingStarForMovie(movies);
+
+
+        //assert
+        assertNotNull(addRatingStar);
+        assertTrue(movies.contains("rating" + starRating));
 
 
     }
