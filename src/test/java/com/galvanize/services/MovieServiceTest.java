@@ -8,6 +8,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -65,7 +66,24 @@ class MovieServiceTest {
 
     }
 
+    @Test
+    void getAllMoviesByTitle_Test(){
 
+        // set up
+
+        List<Movie> movie = new ArrayList<>();
+
+        String title = "Star trek";
+
+         List<Movie> movies = movieService.getAllMoviesByTitle(title);
+
+        //Exercise
+        assertFalse(movie.contains(title));
+        assertEquals(movie.size(), movies.size());
+        assertTrue(movie.containsAll(movies));
+
+
+    }
 
 
 
