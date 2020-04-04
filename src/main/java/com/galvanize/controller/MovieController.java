@@ -33,4 +33,19 @@ public class MovieController {
     }
 
 
-}
+
+//    @GetMapping("/{id}")
+//    public ResponseEntity<ServiceTicket> getTicketById(@PathVariable Long id){
+//        Optional<ServiceTicket> ticket = service.getTicket(id);
+//        return ticket.isPresent() ? ResponseEntity.ok(ticket.get()) : ResponseEntity.notFound().build();
+
+
+        @GetMapping("/{title}")
+                public List<Movie> getAllMoviesByTitle(@PathVariable String title){
+                  return this.movieService.getAllMoviesByTitle(title);
+
+        }
+    }
+
+
+

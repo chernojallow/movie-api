@@ -26,6 +26,16 @@ public class MovieService {
         return this.movieRepository.findAll();
     }
 
+    public List<Movie>getAllMoviesByTitle(String title) {
+
+        if (!title.isEmpty()) {
+            return this.movieRepository.findAll();
+
+        } else {
+            return null;
+        }
+
+    }
 //    public Movie getOneMovieByIMDBID( String imdbid) {
 //        Optional<Movie> movie = movieRepository.getOneMovieByIMDBID(imdbid);
 //        return movie.orElse(null);
