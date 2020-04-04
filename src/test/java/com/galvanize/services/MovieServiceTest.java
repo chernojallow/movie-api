@@ -86,6 +86,22 @@ class MovieServiceTest {
     }
 
 
+    @Test
+    void deleteMovieById_whenExist(){
+
+        Movie movie = movieService.createMovie(new Movie(1L, "imdbid", "sam", "lets make a movie", "2020","2020-10-10" ));
+
+        //Exercise
+        boolean actual = movieService.deleteMovieById(movie.getMovieId());
+
+         //Assert
+        assertEquals(true, actual);
+        assertNotEquals(actual,movie);
+
+
+
+    }
+
     }
 
 
