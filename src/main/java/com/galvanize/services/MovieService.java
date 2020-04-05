@@ -54,7 +54,7 @@ public class MovieService {
 
 
 
-     List <Movie> addRatingStarForMovie(List<Object> movie) {
+    public List <Movie> addRatingStarForMovie(List<Object> movie) {
         return movieRepository.findAll();
      }
 

@@ -14,11 +14,13 @@ import org.springframework.http.MediaType;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.hamcrest.Matchers.hasSize;
 import static org.hamcrest.Matchers.notNullValue;
+import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
@@ -108,6 +110,27 @@ public class MovieControllerTest {
 
  }
 
+
+ @Test
+    void addStarRating_For_Movie_Test() throws Exception {
+
+        //Set up
+     Movie movie = new Movie();
+     String starRating = "*";
+
+     List<Object> movies = new ArrayList<>();
+     movies.add(movie);
+     movies.add("rating" + starRating);
+
+     when(movieService.addRatingStarForMovie(movies)).thenReturn(Collections.singletonList(movie));
+
+     //Exercise
+     mockMvc.perform(get(baseUrl+ "/addMovie").accept(MediaType.APPLICATION_JSON))
+             .andExpect(status().isOk())
+     .andExpect(jsonPath("$", hasSize(0)));
+
+
+ }
 
 
 

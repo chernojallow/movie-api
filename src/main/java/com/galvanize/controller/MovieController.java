@@ -38,6 +38,13 @@ public class MovieController {
         }
 
 
+     @PatchMapping("/{addMovie}")
+     public List <Movie> addStarRating_For_Movie_Test(@PathVariable List<Object> addMovie){
+        return movieService.addRatingStarForMovie(addMovie);
+
+     }
+
+
     @DeleteMapping("/{id}")
     ResponseEntity<Object> deleteMovieById(@PathVariable Long id) {
 
