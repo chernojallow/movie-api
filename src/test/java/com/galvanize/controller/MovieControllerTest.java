@@ -69,6 +69,7 @@ public class MovieControllerTest {
         mockMvc.perform(post(baseUrl).content(newMapper).contentType(MediaType.APPLICATION_JSON))
                 .andDo(print())
                 .andExpect(status().isOk())
+                        .andDo(print())
                         .andExpect(jsonPath("$.movieId").value(movie.getMovieId()))
                 .andExpect(jsonPath("$.imdbId").value(movie.getImdbId()));
 
