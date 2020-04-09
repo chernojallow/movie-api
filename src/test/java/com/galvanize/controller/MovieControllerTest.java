@@ -44,13 +44,17 @@ public class MovieControllerTest {
 
     final String baseUrl = "/api/movies";
 
+    ObjectMapper mapper = new ObjectMapper();
+
+
+
+    //POST: add a movie to the database
     @Test
     void createMovieTest() throws Exception {
 
 
 //        String date = "16-Aug-2016";
 //        LocalDate released = LocalDate.parse(date);
-
 
         List<String> actors = new ArrayList<>();
             actors.add("larry");
@@ -76,6 +80,8 @@ public class MovieControllerTest {
     }
 
 
+
+    //GET: all movies in the database
     @Test
     void getAllMoviesTest() throws Exception {
 
@@ -92,7 +98,25 @@ public class MovieControllerTest {
 
     }
 
- @Test
+
+
+   // GET: one movie by imdbid
+    @Test
+    public void getOneMovieByimdbId() throws Exception {
+        Movie expected = new Movie();
+        expected.setMovieId(1L);
+        when(movieService.findMovieByImdbId("tt0241")).thenReturn(expected);
+        mockMvc.perform(get(baseUrl + "/imdbId/tt0241"))
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("$.imdbId").value(expected.getImdbId()))
+                .andExpect(jsonPath("$.movieId").value(expected.getMovieId()));
+    }
+
+
+
+
+    //GET: all movies by Title
+    @Test
     void getAllMoviesByTitle_Test() throws Exception {
 
         //Set up
@@ -111,6 +135,8 @@ public class MovieControllerTest {
 
  }
 
+
+//    PATCH: add or update a star rating for a movie (1 - 5)
 
  @Test
     void addStarRating_For_Movie_Test() throws Exception {
@@ -134,7 +160,6 @@ public class MovieControllerTest {
  }
 
 
-
  ////    DELETE: delete a movie by id
 
     @Test
@@ -149,59 +174,6 @@ public class MovieControllerTest {
     }
 
 
-
-
-
-
-
-
-    //    @Test
-//    void getOneMovieByIMDBID_test() throws Exception {
-//
-//
-//        Movie movie = new Movie();
-//         movie.getImdbId();
-//
-////        List<Movie> movies = new ArrayList<>();
-////        Movie movie = new Movie();
-////        movie.getImdbId();
-////        movies.add(movie);
-//
-//
-//        when(movieService.getOneMovieByIMDBID(movie.getImdbId())).thenReturn(movie);
-//
-//        mockMvc.perform(get(baseUrl).accept(MediaType.APPLICATION_JSON))
-//                .andExpect(status().isOk())
-//                .andExpect(jsonPath("$.imdbId").value(movie.getImdbId()));
-//
-//
-//
-//
-//
-//    }
-
-
-
-
-//   @Test
-//    void  searchMovie_ByActor_ByDirector_ByGenre_Test() throws Exception {
-//
-//        Movie movie = new Movie();
-//        List<Movie> movies = new ArrayList<>();
-//        movie.setDirectors("Roy");
-//        movies.add(movie);
-//
-//        String searchActor = "Anold";
-//        String searchDirector = "Roy";
-//        String searchGenre = "comic";
-//
-//       when(movieService.searchMovieByActor_ByDirector_ByGenre(movie.getDirectors()))
-//               .thenReturn(new ArrayList<>()).equals(searchActor);
-//
-//       mockMvc.perform(get(baseUrl).param("searchActor", searchActor))
-//               .andExpect(status().isOk());
-//
-//   }
 
 
 

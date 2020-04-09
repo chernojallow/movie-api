@@ -127,8 +127,22 @@ class MovieServiceTest {
         assertNotEquals(actual,movie);
 
 
+        }
 
-    }
+
+//      @Test
+//    void getMovieByIMDBID_Test() throws Exception {
+//
+//          // Set
+//          Movie movie = new Movie();
+//          movie.setImdbId("imdbid");
+//
+//          // Exercise
+//
+//          Movie movie = movieService.getMovieByIMDBID(movie.getImdbId());
+//      }
+//
+
 
     }
 

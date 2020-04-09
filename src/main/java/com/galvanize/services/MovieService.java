@@ -48,15 +48,12 @@ public class MovieService {
 
     }
 
-//    public Movie addRatingStarForMovie(Movie movie) {
-//        return movieRepository.save(movie);
-//    }
-
 
 
     public List <Movie> addRatingStarForMovie(List<Object> movie) {
         return movieRepository.findAll();
      }
+
 
 
 //    public List<Movie> searchMovieByActor_ByDirector_ByGenre(String searchActor) {
@@ -66,10 +63,12 @@ public class MovieService {
 
 
 
-//    public Movie getOneMovieByIMDBID( String imdbid) {
+//    public Movie getMovieByIMDBID( String imdbid) {
 //        Optional<Movie> movie = movieRepository.getOneMovieByIMDBID(imdbid);
 //        return movie.orElse(null);
 //    }
+
+
 
 
 }

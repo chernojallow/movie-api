@@ -57,10 +57,12 @@ public class MovieController {
     }
 
 
-    //    @GetMapping("/{id}")
-//    public ResponseEntity<ServiceTicket> getTicketById(@PathVariable Long id){
-//        Optional<ServiceTicket> ticket = service.getTicket(id);
-//        return ticket.isPresent() ? ResponseEntity.ok(ticket.get()) : ResponseEntity.notFound().build();
+
+//    @GetMapping("/imdbid")
+//    public Movie  getJokesContaining(@RequestParam String imdbid){
+//        return movieService.getMovieByIMDBID(imdbid);
+//    }
+
 
 
 
