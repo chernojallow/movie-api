@@ -37,8 +37,6 @@ public class MovieController {
     }
 
 
-
-
     @GetMapping("/{title}")
                 public List<Movie> getAllMoviesByTitle(@PathVariable String title){
                   return this.movieService.getAllMoviesByTitle(title);

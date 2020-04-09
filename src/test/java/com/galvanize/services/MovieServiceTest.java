@@ -17,6 +17,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -61,29 +62,42 @@ class MovieServiceTest {
         //Set up
         List<Movie> movie = new ArrayList<>();
         List<Movie> movies = movieService.getAllMovies();
-
-
-        System.out.println(movie);
+//        System.out.println(movie);
 
         //Execise
         assertEquals(movie.size(), movies.size());
         assertTrue(movie.containsAll(movies));
 
-
     }
+
+
+    @Test
+    public void findMovieByImdbId(){
+
+        // Set
+        Movie movie = new Movie();
+        movie.setImdbId("imdbid");
+         // Exercise
+        Movie expected = movieRepository.findMovieByImdbId(movie.getImdbId());
+
+        //Assert
+        assertEquals(expected, movieService.findMovieByImdbId("tt0241"));
+    }
+
+
+
 
     @Test
     void getAllMoviesByTitle_Test(){
 
-        // set up
-
+        // setup
         List<Movie> movie = new ArrayList<>();
-
         String title = "Star trek";
 
+        //Exercise
          List<Movie> movies = movieService.getAllMoviesByTitle(title);
 
-        //Exercise
+        //Assert
         assertFalse(movie.contains(title));
         assertEquals(movie.size(), movies.size());
         assertTrue(movie.containsAll(movies));
@@ -104,7 +118,6 @@ class MovieServiceTest {
 
         //Exercise
         List<Movie> addRatingStar = movieService.addRatingStarForMovie(movies);
-
 
         //assert
         assertNotNull(addRatingStar);
