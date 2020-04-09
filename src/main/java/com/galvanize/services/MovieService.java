@@ -54,6 +54,9 @@ public class MovieService {
         return movieRepository.findAll();
      }
 
+    public Movie findMovieByImdbId(String imdbId) {
+        return movieRepository.findMovieByImdbId(imdbId);
+    }
 
 
 //    public List<Movie> searchMovieByActor_ByDirector_ByGenre(String searchActor) {

@@ -31,6 +31,14 @@ public class MovieController {
 
     }
 
+    @GetMapping("/imdbId/{imdbId}")
+    public Movie getOneMovieReviewByimdbId(@PathVariable String imdbId){
+        return movieService.findMovieByImdbId(imdbId);
+    }
+
+
+
+
     @GetMapping("/{title}")
                 public List<Movie> getAllMoviesByTitle(@PathVariable String title){
                   return this.movieService.getAllMoviesByTitle(title);

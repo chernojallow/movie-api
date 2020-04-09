@@ -80,7 +80,6 @@ public class MovieControllerTest {
     }
 
 
-
     //GET: all movies in the database
     @Test
     void getAllMoviesTest() throws Exception {
@@ -99,7 +98,6 @@ public class MovieControllerTest {
     }
 
 
-
    // GET: one movie by imdbid
     @Test
     public void getOneMovieByimdbId() throws Exception {
@@ -113,8 +111,6 @@ public class MovieControllerTest {
     }
 
 
-
-
     //GET: all movies by Title
     @Test
     void getAllMoviesByTitle_Test() throws Exception {
@@ -125,16 +121,13 @@ public class MovieControllerTest {
          movie.getTitle();
          movies.add(movie);
 
-
          //Exercise
      when(movieService.getAllMoviesByTitle(movie.getTitle())).thenReturn(movies);
      mockMvc.perform(get(baseUrl).accept(MediaType.APPLICATION_JSON))
              .andExpect(status().isOk());
 //             .andExpect(jsonPath("$", hasSize(movies.size())));
 
-
  }
-
 
 //    PATCH: add or update a star rating for a movie (1 - 5)
 
@@ -172,8 +165,6 @@ public class MovieControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(jsonPath("$").doesNotExist());
     }
-
-
 
 
 
